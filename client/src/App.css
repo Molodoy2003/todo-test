@@ -1,0 +1,38 @@
+/* src/App.css */
+.layout {
+  min-height: 100vh;
+}
+
+.header {
+  background: #001529;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: #fff;
+  margin: 0;
+}
+
+.content {
+  padding: 50px;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.add-button {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.todo-list {
+  margin-top: 20px;
+}
+
+.footer {
+  text-align: center;
+}
