@@ -1,15 +1,15 @@
-const Todo = require('../models/Todo.js')
+import Todo from '../models/Todo.js'
 
-const getTodos = async (req, res) => {
-  const todos = await Todo.find()
-  res.status(200).json(todos)
+export const getTodos = async (req, res) => {
   try {
+    const todos = await Todo.find()
+    res.status(200).json(todos)
   } catch (error) {
     return res.status(400).json({ message: 'Ошибка при получении todos' })
   }
 }
 
-const addTodo = async (req, res) => {
+export const addTodo = async (req, res) => {
   try {
     const { text } = req.body
 
@@ -24,7 +24,7 @@ const addTodo = async (req, res) => {
   }
 }
 
-const deleteTodo = async (req, res) => {
+export const deleteTodo = async (req, res) => {
   try {
     const todo = await Todo.findOneAndDelete({ _id: req.params.id })
 
@@ -34,16 +34,14 @@ const deleteTodo = async (req, res) => {
   }
 }
 
-const completedTodo = async (req, res) => {
-  const todo = await Todo.findOne({ _id: req.params.id })
-  todo.completed = !todo.completed
-
-  await todo.save()
-  res.json(todo)
+export const completedTodo = async (req, res) => {
   try {
+    const todo = await Todo.findOne({ _id: req.params.id })
+    todo.completed = !todo.completed
+
+    await todo.save()
+    res.json(todo)
   } catch (error) {
     return res.status(400).json({ message: 'Ошибка при выделении todo' })
   }
 }
-
-module.exports = [completedTodo, addTodo, getTodos, deleteTodo]
